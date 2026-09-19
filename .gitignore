@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data (Ignore all except demo)
+backend/data/workspaces/
+backend/data/evidence/
+backend/data/embeddings/
+backend/data/relationships/
+backend/data/exports/
+backend/data/uploads/
+backend/data/timelines/
+!backend/data/demo/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+
+# Node
+node_modules/

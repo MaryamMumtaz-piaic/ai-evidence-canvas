@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Evidence Canvas - Turn Evidence Into Connected Intelligence</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-primary': '#0a0b0f',
+                        'bg-secondary': '#111318',
+                        'bg-tertiary': '#1a1d26',
+                        'border': '#1e2130',
+                        'accent': '#4f7cff',
+                        'accent-hover': '#3a68f0',
+                        'success': '#22d3a0',
+                        'warning': '#f59e0b',
+                        'danger': '#ef4444',
+                        'text-primary': '#f1f5f9',
+                        'text-secondary': '#94a3b8',
+                        'text-muted': '#475569',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dot-pattern {
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent/30 selection:text-white">
+    
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 text-text-primary font-bold text-lg hover:opacity-80 transition-opacity">
+                <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                    <i data-lucide="network"></i>
+                </div>
+                Evidence<span class="text-text-secondary font-medium">Canvas</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-text-secondary">
+                <a href="#features" class="hover:text-text-primary transition-colors">Features</a>
+                <a href="#how-it-works" class="hover:text-text-primary transition-colors">How it Works</a>
+                <a href="#use-cases" class="hover:text-text-primary transition-colors">Use Cases</a>
+            </div>
+            
+            <a href="workspace.html" class="px-5 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-colors shadow-lg shadow-accent/20">
+                Start Investigation
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden dot-pattern">
+        <!-- Glow effect -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Left text -->
+            <div class="animate-fade-in" style="animation-delay: 0.1s">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    AI-Powered Discovery
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    Turn Evidence Into <br/>
+                    <span class="text-gradient-accent">Connected Intelligence</span>
+                </h1>
+                <p class="text-lg text-text-secondary mb-8 leading-relaxed max-w-lg">
+                    The visual investigation workspace that discovers relationships across your documents, emails, URLs, and notes using AI. Connect the dots instantly.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="workspace.html" class="px-6 py-3 rounded-lg bg-accent hover:bg-accent-hover text-white font-medium transition-colors shadow-lg shadow-accent/25 flex items-center gap-2">
+                        Start Investigation <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#features" class="px-6 py-3 rounded-lg bg-bg-tertiary hover:bg-border text-text-primary border border-border font-medium transition-colors flex items-center gap-2">
+                        View Demo
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Right Mockup -->
+            <div class="relative h-[450px] w-full animate-fade-in" style="animation-delay: 0.3s">
+                <div class="absolute inset-0 glass rounded-2xl border border-border/50 shadow-2xl overflow-hidden bg-bg-secondary/40">
+                    
+                    <!-- SVG Lines container -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 1;">
+                        <path d="M 120 100 Q 250 120, 280 200" fill="none" stroke="var(--accent)" stroke-width="2" class="path-line opacity-50" />
+                        <path d="M 280 200 Q 300 300, 400 280" fill="none" stroke="var(--accent)" stroke-width="2" class="path-line opacity-50" />
+                        <path d="M 280 200 Q 150 250, 150 320" fill="none" stroke="var(--accent)" stroke-width="2" class="path-line opacity-50" />
+                    </svg>
+
+                    <!-- Card 1: PDF -->
+                    <div class="absolute top-10 left-10 w-48 bg-bg-tertiary border-l-4 border-l-[#ef4444] border-y border-r border-border rounded shadow-lg p-3 z-10 hover:-translate-y-1 transition-transform cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="file-text" class="w-4 h-4 text-[#ef4444]"></i>
+                            <span class="text-xs font-medium text-text-primary truncate">Bank_Statement.pdf</span>
+                        </div>
+                        <div class="flex gap-1 flex-wrap">
+                            <span class="text-[9px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-secondary">John Doe</span>
+                            <span class="text-[9px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-secondary">$45,000</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2: Note (Center Hub) -->
+                    <div class="absolute top-[160px] left-[180px] w-52 bg-bg-tertiary border-l-4 border-l-[#f59e0b] border-y border-r border-accent shadow-[0_0_15px_rgba(79,124,255,0.2)] rounded p-3 z-20 hover:-translate-y-1 transition-transform cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="sticky-note" class="w-4 h-4 text-[#f59e0b]"></i>
+                                <span class="text-xs font-medium text-text-primary">Investigation Note</span>
+                            </div>
+                            <span class="flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+                        </div>
+                        <p class="text-[10px] text-text-secondary leading-snug">AI found a match between the bank transfer and the offshore shell company mentioned in the email.</p>
+                    </div>
+                    
+                    <!-- Card 3: Email -->
+                    <div class="absolute top-[260px] right-8 w-48 bg-bg-tertiary border-l-4 border-l-[#22d3a0] border-y border-r border-border rounded shadow-lg p-3 z-10 hover:-translate-y-1 transition-transform cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-[#22d3a0]"></i>
+                            <span class="text-xs font-medium text-text-primary truncate">Fwd: Urgent Transfer</span>
+                        </div>
+                        <div class="flex gap-1 flex-wrap">
+                            <span class="text-[9px] px-1.5 py-0.5 bg-bg-secondary rounded text-text-secondary">Shell Corp LLC</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: URL -->
+                    <div class="absolute bottom-10 left-12 w-44 bg-bg-tertiary border-l-4 border-l-[#06b6d4] border-y border-r border-border rounded shadow-lg p-3 z-10 hover:-translate-y-1 transition-transform cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="link" class="w-4 h-4 text-[#06b6d4]"></i>
+                            <span class="text-xs font-medium text-text-primary truncate">Company Registry</span>
+                        </div>
+                        <div class="text-[9px] text-text-muted break-all">https://registry.gov/corp/892</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="border-y border-border bg-bg-secondary/50 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-border">
+            <div class="text-center px-4">
+                <div class="text-3xl font-bold text-text-primary mb-1">6+</div>
+                <div class="text-sm text-text-secondary">Evidence Types</div>
+            </div>
+            <div class="text-center px-4">
+                <div class="text-3xl font-bold text-text-primary mb-1">AI</div>
+                <div class="text-sm text-text-secondary">Relationship Detection</div>
+            </div>
+            <div class="text-center px-4">
+                <div class="text-3xl font-bold text-text-primary mb-1">RAG</div>
+                <div class="text-sm text-text-secondary">Powered Q&A</div>
+            </div>
+            <div class="text-center px-4">
+                <div class="text-3xl font-bold text-text-primary mb-1">Infinite</div>
+                <div class="text-sm text-text-secondary">Visual Canvas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">How It Works</h2>
+                <p class="text-text-secondary max-w-2xl mx-auto">From raw data to actionable intelligence in minutes, not weeks.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-6 relative">
+                <!-- Connector Line -->
+                <div class="hidden md:block absolute top-8 left-[10%] right-[10%] h-0.5 bg-border -z-10"></div>
+                
+                <!-- Steps -->
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto bg-bg-secondary border border-border rounded-xl flex items-center justify-center mb-4 text-accent relative glass">
+                        <i data-lucide="folder-open"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">1. Add Evidence</h3>
+                    <p class="text-sm text-text-secondary">Upload PDFs, paste URLs, or write notes.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto bg-bg-secondary border border-border rounded-xl flex items-center justify-center mb-4 text-[#8b5cf6] relative glass">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">2. AI Analyzes</h3>
+                    <p class="text-sm text-text-secondary">Extracts entities, topics, and key events automatically.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto bg-bg-secondary border border-border rounded-xl flex items-center justify-center mb-4 text-[#22d3a0] relative glass">
+                        <i data-lucide="git-merge"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">3. Connects Dots</h3>
+                    <p class="text-sm text-text-secondary">AI discovers hidden relationships across sources.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto bg-bg-secondary border border-border rounded-xl flex items-center justify-center mb-4 text-[#06b6d4] relative glass">
+                        <i data-lucide="layout-template"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">4. Visual Canvas</h3>
+                    <p class="text-sm text-text-secondary">See everything connected spatially on a board.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 mx-auto bg-bg-secondary border border-border rounded-xl flex items-center justify-center mb-4 text-[#f59e0b] relative glass">
+                        <i data-lucide="message-square"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">5. Ask Questions</h3>
+                    <p class="text-sm text-text-secondary">Chat with your evidence citing precise sources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evidence Types Section -->
+    <section class="py-24 bg-bg-secondary/30 border-y border-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Support for Every Source</h2>
+                <p class="text-text-secondary max-w-2xl mx-auto">Ingest structured and unstructured data effortlessly.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- PDF -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#ef4444]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#ef4444]/10 text-[#ef4444] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">PDF Documents</h3>
+                    <p class="text-sm text-text-secondary">Bank statements, legal briefs, reports, and contracts with full text extraction.</p>
+                </div>
+                <!-- Image -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#8b5cf6]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#8b5cf6]/10 text-[#8b5cf6] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="image"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">Images & Scans</h3>
+                    <p class="text-sm text-text-secondary">Photographs, screenshots, and scanned documents with OCR support.</p>
+                </div>
+                <!-- URL -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#06b6d4]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#06b6d4]/10 text-[#06b6d4] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="link"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">Web URLs</h3>
+                    <p class="text-sm text-text-secondary">News articles, public registries, and web pages scraped automatically.</p>
+                </div>
+                <!-- Note -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#f59e0b]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#f59e0b]/10 text-[#f59e0b] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="sticky-note"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">Investigator Notes</h3>
+                    <p class="text-sm text-text-secondary">Your own hypotheses, summaries, and manual connection points.</p>
+                </div>
+                <!-- Email -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#22d3a0]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#22d3a0]/10 text-[#22d3a0] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">Emails (.eml/.msg)</h3>
+                    <p class="text-sm text-text-secondary">Communication threads with metadata, senders, and recipients parsed.</p>
+                </div>
+                <!-- Text File -->
+                <div class="p-6 rounded-xl bg-bg-secondary border border-border hover:border-[#94a3b8]/50 transition-colors group">
+                    <div class="w-10 h-10 rounded-lg bg-[#94a3b8]/10 text-[#94a3b8] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-code"></i>
+                    </div>
+                    <h3 class="font-semibold text-text-primary mb-2">Text & Logs</h3>
+                    <p class="text-sm text-text-secondary">CSV files, system logs, JSON exports, and plain text evidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Built for Professionals</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-bg-tertiary rounded-xl border border-border">
+                    <i data-lucide="scale" class="w-6 h-6 text-accent mb-4"></i>
+                    <h3 class="font-semibold mb-2">Legal Research</h3>
+                    <p class="text-sm text-text-secondary">Connect case files, depositions, and precedents visually for litigation prep.</p>
+                </div>
+                <div class="p-6 bg-bg-tertiary rounded-xl border border-border">
+                    <i data-lucide="shield-alert" class="w-6 h-6 text-danger mb-4"></i>
+                    <h3 class="font-semibold mb-2">Security Audits</h3>
+                    <p class="text-sm text-text-secondary">Trace threat actors through IP logs, incident reports, and code snippets.</p>
+                </div>
+                <div class="p-6 bg-bg-tertiary rounded-xl border border-border">
+                    <i data-lucide="briefcase" class="w-6 h-6 text-[#f59e0b] mb-4"></i>
+                    <h3 class="font-semibold mb-2">Business Intel</h3>
+                    <p class="text-sm text-text-secondary">Map competitor networks, news articles, and SEC filings in one canvas.</p>
+                </div>
+                <div class="p-6 bg-bg-tertiary rounded-xl border border-border">
+                    <i data-lucide="search" class="w-6 h-6 text-[#22d3a0] mb-4"></i>
+                    <h3 class="font-semibold mb-2">Journalism</h3>
+                    <p class="text-sm text-text-secondary">Investigative reporting connecting leaked documents and offshore accounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-accent/5"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl font-bold mb-6">Ready to start your investigation?</h2>
+            <p class="text-text-secondary mb-10 text-lg">Join top investigators turning raw data into visual intelligence.</p>
+            <a href="workspace.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent-hover text-white text-lg font-medium transition-colors shadow-xl shadow-accent/20">
+                Create Your First Workspace <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-bg-secondary py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2 text-text-primary font-bold text-lg">
+                <i data-lucide="network" class="text-accent"></i>
+                EvidenceCanvas
+            </div>
+            <div class="text-sm text-text-secondary">
+                &copy; 2026 AI Evidence Canvas. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
