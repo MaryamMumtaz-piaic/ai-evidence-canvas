@@ -145,26 +145,26 @@ export function hideModal(id) {
 export function confirm(message, title = 'Confirm Action') {
   return new Promise((resolve) => {
     const id = 'confirm-dialog-' + Date.now();
-    const html = \`
-      <div id="\${id}" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-200">
+    const html = `
+      <div id="${id}" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-200">
         <div class="modal-panel bg-bg-secondary border border-border rounded-xl shadow-2xl p-6 max-w-sm w-full mx-4 transition-all duration-200" style="opacity:0; transform:scale(0.95)">
           <h3 class="text-lg font-semibold text-text-primary mb-2 flex items-center gap-2">
-            <i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i> \${title}
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i> ${title}
           </h3>
-          <p class="text-text-secondary text-sm mb-6 ml-7">\${message}</p>
+          <p class="text-text-secondary text-sm mb-6 ml-7">${message}</p>
           <div class="flex justify-end gap-3">
-            <button id="\${id}-cancel" class="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-colors">Cancel</button>
-            <button id="\${id}-confirm" class="px-4 py-2 rounded-lg text-sm font-medium bg-danger hover:bg-red-500 text-white transition-colors">Confirm</button>
+            <button id="${id}-cancel" class="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-colors">Cancel</button>
+            <button id="${id}-confirm" class="px-4 py-2 rounded-lg text-sm font-medium bg-danger hover:bg-red-500 text-white transition-colors">Confirm</button>
           </div>
         </div>
       </div>
-    \`;
+    `;
     
     document.body.insertAdjacentHTML('beforeend', html);
     if (window.lucide) lucide.createIcons({ root: document.getElementById(id) });
     
     setTimeout(() => {
-      const panel = document.querySelector(\`#\${id} .modal-panel\`);
+      const panel = document.querySelector(`#${id} .modal-panel`);
       if(panel) {
           panel.style.opacity = '1';
           panel.style.transform = 'scale(1)';
@@ -172,7 +172,7 @@ export function confirm(message, title = 'Confirm Action') {
     }, 10);
     
     const cleanup = (result) => {
-      const panel = document.querySelector(\`#\${id} .modal-panel\`);
+      const panel = document.querySelector(`#${id} .modal-panel`);
       if(panel) {
           panel.style.opacity = '0';
           panel.style.transform = 'scale(0.95)';
@@ -183,8 +183,8 @@ export function confirm(message, title = 'Confirm Action') {
       }, 200);
     };
 
-    document.getElementById(\`\${id}-cancel\`).onclick = () => cleanup(false);
-    document.getElementById(\`\${id}-confirm\`).onclick = () => cleanup(true);
+    document.getElementById(`${id}-cancel`).onclick = () => cleanup(false);
+    document.getElementById(`${id}-confirm`).onclick = () => cleanup(true);
   });
 }
 
@@ -192,7 +192,7 @@ export function setLoading(element, isLoading, text = 'Processing...') {
   if (isLoading) {
     element.dataset.originalHtml = element.innerHTML;
     element.disabled = true;
-    element.innerHTML = \`<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin inline-block"></i> \${text}\`;
+    element.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin inline-block"></i> ${text}`;
     if (window.lucide) lucide.createIcons({ root: element });
   } else {
     element.disabled = false;

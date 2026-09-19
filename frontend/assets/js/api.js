@@ -37,7 +37,7 @@ const api = {
     list: () => fetchAPI('/workspaces'),
     get: (id) => fetchAPI(`/workspaces/${id}`),
     create: (data) => fetchAPI('/workspaces', { method: 'POST', body: JSON.stringify(data) }),
-    update: (id, data) => fetchAPI(`/workspaces/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    update: (id, data) => fetchAPI(`/workspaces/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
     delete: (id) => fetchAPI(`/workspaces/${id}`, { method: 'DELETE' }),
     analyze: (id) => fetchAPI(`/workspaces/${id}/analyze`, { method: 'POST' }),
     getRelationships: (id) => fetchAPI(`/workspaces/${id}/relationships`),
@@ -73,8 +73,8 @@ const api = {
     delete: (id) => fetchAPI(`/evidence/${id}`, { method: 'DELETE' }),
   },
   
-  search: (workspaceId, query) => fetchAPI(`/workspaces/${workspaceId}/search?q=${encodeURIComponent(query)}`),
-  ask: (workspaceId, question) => fetchAPI(`/workspaces/${workspaceId}/ask`, { method: 'POST', body: JSON.stringify({ question }) }),
+  search: (workspaceId, query) => fetchAPI(`/workspaces/${workspaceId}/search`, { method: 'POST', body: JSON.stringify({ query, workspace_id: workspaceId }) }),
+  ask: (workspaceId, question) => fetchAPI(`/workspaces/${workspaceId}/ask`, { method: 'POST', body: JSON.stringify({ question, workspace_id: workspaceId }) }),
   
   relationships: {
     get: (id) => fetchAPI(`/relationships/${id}`),

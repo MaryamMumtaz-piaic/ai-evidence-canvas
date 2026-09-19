@@ -111,7 +111,7 @@
 
     <!-- New Workspace Modal -->
     <div id="new-workspace-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
-        <div class="modal-panel bg-bg-primary border border-border rounded-xl shadow-2xl w-full max-w-md mx-4 transition-all duration-200">
+        <div class="modal-panel bg-bg-primary border border-border rounded-xl shadow-2xl w-full max-w-md mx-4 transition-all duration-200" style="opacity:1; transform:scale(1)">
             <div class="flex items-center justify-between p-5 border-b border-border">
                 <h2 class="text-lg font-semibold text-text-primary">New Investigation</h2>
                 <button onclick="hideModal('new-workspace-modal')" class="text-text-muted hover:text-text-primary transition-colors">
@@ -137,14 +137,43 @@
         </div>
     </div>
 
+    <script>
+        // Global modal functions available immediately for inline HTML onclick handlers
+        window.showModal = function(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                const panel = modal.querySelector('.modal-panel');
+                if (panel) {
+                    requestAnimationFrame(() => {
+                        panel.style.opacity = '1';
+                        panel.style.transform = 'scale(1) translateY(0)';
+                    });
+                }
+            }
+        };
+
+        window.hideModal = function(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                const panel = modal.querySelector('.modal-panel');
+                if (panel) {
+                    panel.style.opacity = '0';
+                    panel.style.transform = 'scale(0.95) translateY(10px)';
+                }
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 200);
+            }
+        };
+    </script>
+
     <!-- Application Logic -->
     <script type="module">
         import api from './assets/js/api.js';
-        import { showToast, formatDate, getStatusBadge, debounce, showModal, hideModal, confirm, setLoading } from './assets/js/utils.js';
-
-        // Expose modal functions to window for onclick handlers
-        window.showModal = showModal;
-        window.hideModal = hideModal;
+        import { showToast, formatDate, getStatusBadge, debounce, confirm, setLoading } from './assets/js/utils.js';
 
         let allWorkspaces = [];
 
@@ -188,7 +217,7 @@
                     e.target.reset();
                     // Navigate to canvas or reload
                     if(data && data.id) {
-                        window.location.href = \`canvas.html?workspace=\${data.id}\`;
+                        window.location.href = `canvas.html?workspace=${data.id}`;
                     } else {
                         loadWorkspaces();
                     }
@@ -200,9 +229,9 @@
             const grid = document.getElementById('workspaces-grid');
             
             // Show skeletons
-            grid.innerHTML = Array(6).fill(0).map(() => \`
+            grid.innerHTML = Array(6).fill(0).map(() => `
                 <div class="bg-bg-secondary border border-border rounded-xl p-5 flex flex-col h-48 skeleton"></div>
-            \`).join('');
+            `).join('');
 
             const { data, error } = await api.workspaces.list();
             
@@ -214,7 +243,8 @@
                 return;
             }
             
-            allWorkspaces = data || [];
+            // API returns {workspaces: [...]} — unwrap the array
+            allWorkspaces = (data && data.workspaces) ? data.workspaces : [];
             updateStats(allWorkspaces);
             renderGrid(allWorkspaces);
         }
@@ -222,12 +252,12 @@
         function updateStats(workspaces) {
             document.getElementById('stat-workspaces').textContent = workspaces.length;
             
-            // Calculate totals (assuming backend returns these counts)
+            // API uses snake_case: evidence_count, relationship_count
             let totalEv = 0;
             let totalConn = 0;
             workspaces.forEach(w => {
-                totalEv += w.evidenceCount || 0;
-                totalConn += w.relationshipCount || 0;
+                totalEv += w.evidence_count || w.evidenceCount || 0;
+                totalConn += w.relationship_count || w.relationshipCount || 0;
             });
             
             document.getElementById('stat-evidence').textContent = totalEv;
@@ -250,15 +280,15 @@
             emptyState.classList.add('hidden');
             emptyState.classList.remove('flex');
             
-            grid.innerHTML = workspaces.map(ws => \`
+            grid.innerHTML = workspaces.map(ws => `
                 <div class="bg-bg-secondary border border-border rounded-xl p-5 flex flex-col hover:border-border/80 hover:shadow-lg transition-all animate-fade-in group">
                     <div class="flex justify-between items-start mb-3">
-                        <h3 class="font-bold text-text-primary text-lg truncate pr-4">\${escapeHtml(ws.name)}</h3>
-                        \${getStatusBadge(ws.status)}
+                        <h3 class="font-bold text-text-primary text-lg truncate pr-4">${escapeHtml(ws.name)}</h3>
+                        ${getStatusBadge(ws.status)}
                     </div>
                     
                     <p class="text-sm text-text-secondary line-clamp-2 mb-4 flex-1">
-                        \${escapeHtml(ws.description || 'No description provided.')}
+                        ${escapeHtml(ws.description || 'No description provided.')}
                     </p>
                     
                     <!-- Mini Canvas Preview Graphic -->
@@ -273,26 +303,26 @@
                     
                     <div class="flex items-center gap-4 text-xs text-text-muted mb-4">
                         <div class="flex items-center gap-1.5" title="Evidence count">
-                            <i data-lucide="files" class="w-3.5 h-3.5"></i> \${ws.evidenceCount || 0}
+                            <i data-lucide="files" class="w-3.5 h-3.5"></i> ${ws.evidence_count || ws.evidenceCount || 0}
                         </div>
                         <div class="flex items-center gap-1.5" title="Relationships found">
-                            <i data-lucide="git-merge" class="w-3.5 h-3.5"></i> \${ws.relationshipCount || 0}
+                            <i data-lucide="git-merge" class="w-3.5 h-3.5"></i> ${ws.relationship_count || ws.relationshipCount || 0}
                         </div>
                         <div class="flex items-center gap-1.5 ml-auto text-[10px]">
-                            Updated \${formatDate(ws.updatedAt || ws.createdAt)}
+                            Updated ${formatDate(ws.updated_at || ws.updatedAt || ws.created_at || ws.createdAt)}
                         </div>
                     </div>
                     
                     <div class="flex items-center gap-2 pt-3 border-t border-border">
-                        <a href="canvas.html?workspace=\${ws.id}" class="flex-1 text-center py-2 rounded-lg bg-bg-tertiary hover:bg-accent/10 hover:text-accent text-sm font-medium transition-colors border border-border hover:border-accent/30">
+                        <a href="canvas.html?workspace=${ws.id}" class="flex-1 text-center py-2 rounded-lg bg-bg-tertiary hover:bg-accent/10 hover:text-accent text-sm font-medium transition-colors border border-border hover:border-accent/30">
                             Open Canvas
                         </a>
-                        <button onclick="deleteWorkspace('\${ws.id}')" class="p-2 rounded-lg bg-bg-tertiary hover:bg-danger/10 hover:text-danger text-text-muted transition-colors border border-border hover:border-danger/30" title="Delete Workspace">
+                        <button onclick="deleteWorkspace('${ws.id}')" class="p-2 rounded-lg bg-bg-tertiary hover:bg-danger/10 hover:text-danger text-text-muted transition-colors border border-border hover:border-danger/30" title="Delete Workspace">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                         </button>
                     </div>
                 </div>
-            \`).join('');
+            `).join('');
             
             lucide.createIcons();
         }
