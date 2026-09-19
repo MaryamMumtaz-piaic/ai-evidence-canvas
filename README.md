@@ -17,6 +17,12 @@ The primary experience is the **visual canvas**, not a chatbot. Evidence becomes
 
 Built for: legal research, product investigations, security incidents, business intelligence, and evidence-based analysis.
 
+## Preview
+
+<p align="center">
+  <img src="evidence.png" alt="AI Evidence Canvas preview" width="100%" />
+</p>
+
 ---
 
 ## ✨ Features
